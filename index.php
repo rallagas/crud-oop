@@ -1,6 +1,4 @@
 <?php require_once 'core/init_head.php'; ?>
-
-
 <body>
    <div class="container">
        <div class="row pt-5">
@@ -13,6 +11,26 @@
 
                   
                   <?php 
+
+                if(Input::exists()){
+                    if(Token::check(Input::get('token'))){
+                        $validate = new Validate();
+                        $validation = $validate->check(array( $_POST,
+                            'username' => array('required' => true),
+                            'password' => array('required' => true)
+                        ));
+                    if($validation->passed()){
+                        //login user.
+                        echo "Logged in";
+                    }
+                    else{
+                        foreach($validation->errors() as $error){
+                            echo "<div class='alert bg-danger'>.$error.</div>";
+                        }
+                    }
+                    }
+                }
+
                   if(Session::exists('home')){
                     echo "<div class='alert alert-success'>" . Session::flash('home') . "</div>"; 
                   }
@@ -21,12 +39,14 @@
                   
                     <form action="">
                       <div class="mb-3">
-                          <input type="text" name="p_username" placeholder="Username" class="form-control">
+                          <input type="text" name="username" placeholder="Username" class="form-control">
                       </div>
                        <div class="mb-3">
-                           <input type="password" name="p_password" placeholder="Password" class="form-control">
+                           <input type="password" name="password" placeholder="Password" class="form-control">
                        </div>
+                       <input type="hidden" name="token" value="<?php echo Token::generate(); ?>" />
                        <button class="btn btn-success form-btn"> <i class="bi bi-key"></i> Login </button>
+
                    </form>
                   </div>
                   <div class="card-footer border-success bg-white">
