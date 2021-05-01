@@ -1,4 +1,6 @@
-<?php require_once 'core/init_head.php'; ?>
+<?php require_once 'core/init_head.php';
+
+?>
 <body>
    
    <div class="container">
@@ -12,37 +14,62 @@
                   <div class="card-body">
                       <div class="mb-3">
                           <?php                          
-                            if(Input::exists()){
-                                $validate = new Validate();
-                                $validation = $validate->check($_POST,array(
-                                    'username' => array(
-                                         'required' => true,
-                                         'min' => 2,
-                                         'max' => 20,
-                                         'unique' => 'users'
-                                    ),
-                                    'password' => array(
-                                        'required' => true,
-                                        'min' => 6
-                                    ),
-                                    'password_again' => array(
-                                        'required' => true,
-                                        'matches' => 'password'
-                                    ),
-                                    'name' => array(
-                                        'required' => true,
-                                        'min' => 2,
-                                        'max' => 50
-                                    )
-                                ));
+                            
 
-                                if($validation->passed()){
-                                    echo 'Passed'; //do something if everything is ok
-                                }else{
-                                    foreach($validation->errors() as $error){
-                                        echo "<div class='alert alert-danger'> <i class='bi bi-exclamation-triangle'></i> ".$error."</div>";
+                            if(Input::exists()){
+                                   if(Token::check(Input::get('token'))) {
+                                        $validate = new Validate();
+                                    $validation = $validate->check($_POST,array(
+                                        'username' => array(
+                                             'required' => true,
+                                             'min' => 2,
+                                             'max' => 20,
+                                             'unique' => 'users'
+                                        ),
+                                        'password' => array(
+                                            'required' => true,
+                                            'min' => 6
+                                        ),
+                                        'password_again' => array(
+                                            'required' => true,
+                                            'matches' => 'password'
+                                        ),
+                                        'name' => array(
+                                            'required' => true,
+                                            'min' => 2,
+                                            'max' => 50
+                                        )
+                                    ));
+    
+                                    if($validation->passed()){
+                                        
+                                        //header("location: index.php");
+                                        $user = new User();
+                                        $salt = Hash::salt(32);
+
+                                        try{
+                                            $user->create(array(
+                                                'username' => Input::get('username'),
+                                                'password' => Hash::make(Input::get('password'), $salt),
+                                                'salt' => $salt,
+                                                'name' => Input::get('name'),
+                                                'joined' => date('Y-m-d H:i:s'),
+                                                'grp' => 1
+                                            ));
+
+                                            Session::flash('home','You Registered Successfully and can now login.');
+                                            Redirect::to('index.php');
+                                        }catch(Exception $e){
+                                            die($e->getMessage());
+                                        }
+
+                                    }else{
+                                        foreach($validation->errors() as $error){
+                                            echo "<div class='alert alert-danger'> <i class='bi bi-exclamation-triangle'></i> ".$error."</div>";
+                                        }
                                     }
-                                }
+
+                                   }
                             }
                           ?>
                       </div>
@@ -59,6 +86,7 @@
                        <div class="mb-3">
                            <input type="text" name="name" value="<?php echo escape(Input::get('name')); ?>" placeholder="Full Name Again" class="form-control">
                        </div>
+                       <input type="hidden" name="token" value="<?php echo Token::generate(); ?>" />
                        <button type="submit" class="btn btn-success form-btn"> <i class="bi bi-check"></i> Done </button>
                    </form>
                   </div>

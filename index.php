@@ -1,4 +1,6 @@
 <?php require_once 'core/init_head.php'; ?>
+
+
 <body>
    <div class="container">
        <div class="row pt-5">
@@ -8,6 +10,15 @@
                       <h3 class="display-6 text-light">Login</h3>
                   </div>
                   <div class="card-body">
+
+                  
+                  <?php 
+                  if(Session::exists('home')){
+                    echo "<div class='alert alert-success'>" . Session::flash('home') . "</div>"; 
+                  }
+                  ?>
+                  
+                  
                     <form action="">
                       <div class="mb-3">
                           <input type="text" name="p_username" placeholder="Username" class="form-control">
