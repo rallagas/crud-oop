@@ -1,14 +1,7 @@
-<?php require_once 'core/init.php'; ?>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-   <?php require_once "core/css.php"; ?>
-</head>
+<?php require_once 'core/init_head.php'; ?>
 <body>
    <div class="container">
-       <div class="row pt-3">
+       <div class="row pt-5">
            <div class="col-lg-4 col-md-12 col-sm-12">
                <div class="card border-success">
                   <div class="card-header bg-success">
@@ -35,7 +28,4 @@
        </div>
    </div>
 </body>
-<footer>
-    <?php require_once "core/js.php"; ?>
-</footer>
-</html>
+<?php require_once 'core/init_foot.php'; ?>
