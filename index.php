@@ -20,12 +20,19 @@
                             'password' => array('required' => true)
                         ));
                     if($validation->passed()){
-                        //login user.
-                        echo "Logged in";
+                        $user = new User();
+                        $login = $user->login(Input::get('username'), Input::get('password'));
+                        if($login){
+                            echo "<div class='alert alert-success'>Logged In</div>";
+                        }
+                        else{
+                            echo "<div class='alert alert-danger'>Login Failed.</div>";
+                        }
+
                     }
                     else{
                         foreach($validation->errors() as $error){
-                            echo "<div class='alert bg-danger'>.$error.</div>";
+                            echo "<div class='alert alert-danger'>.$error.</div>";
                         }
                     }
                     }
@@ -37,7 +44,7 @@
                   ?>
                   
                   
-                    <form action="">
+                    <form action="" method="post">
                       <div class="mb-3">
                           <input type="text" name="username" placeholder="Username" class="form-control">
                       </div>
