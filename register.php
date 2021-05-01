@@ -7,7 +7,7 @@
        <div class="row pt-5">
            <div class="col-lg-3"></div>
            <div class="col-lg-6 col-md-12 col-sm-12">
-               <div class="card border-success">
+               <div class="card shadow border-success">
                   <div class="card-header bg-success">
                       <h3 class="display-6 text-light">Register</h3>
                   </div>
@@ -87,12 +87,13 @@
                            <input type="text" name="name" value="<?php echo escape(Input::get('name')); ?>" placeholder="Full Name Again" class="form-control">
                        </div>
                        <input type="hidden" name="token" value="<?php echo Token::generate(); ?>" />
-                       <button type="submit" class="btn btn-success form-btn"> <i class="bi bi-check"></i> Done </button>
+                       <button type="submit" class="btn btn-success form-btn"> Create <i class="bi bi-person-plus"></i> </button>
                    </form>
                   </div>
                   <div class="card-footer border-success bg-white">
-                      <a href="index.php" class="btn btn-outline-success"> <i class="bi bi-person-circle"></i> Sign in</a>
-                      
+                        <div class="float-end">
+                      Already have an account? <a href="index.php" class="btn btn-outline-success"> <i class="bi bi-person-circle"></i> Sign in Instead</a>
+                      </div>
                   </div>
                </div>
            </div>

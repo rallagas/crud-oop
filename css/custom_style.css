@@ -21,3 +21,10 @@
    color: #198754;
    border-color: #198754;
 }
+
+body {
+    background-image: url('../images/bg-theme-3.jpg');
+    background-repeat: no-repeat;
+    background-size: 1980px 1080px;
+    background-position-y: 0 0 center;
+}

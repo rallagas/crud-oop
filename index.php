@@ -5,7 +5,7 @@
    <div class="container">
        <div class="row pt-5">
            <div class="col-lg-4 col-md-12 col-sm-12">
-               <div class="card border-success">
+               <div class="card shadow">
                   <div class="card-header bg-success">
                       <h3 class="display-6 text-light">Login</h3>
                   </div>
