@@ -11,6 +11,10 @@
 
                   
                   <?php 
+                  if(Session::exists('home')){
+                      echo Session::flash('home');
+                  }
+                  echo Session::get(Config::get('session/session_name'));
 
                 if(Input::exists()){
                     if(Token::check(Input::get('token'))){
@@ -22,7 +26,6 @@
                     if($validation->passed()){
                         $user = new User();
                         $login = $user->login(Input::get('username'), Input::get('password'));
-                        
                         if($login){
                             echo "<div class='alert alert-success'>Logged In</div>";
                         }
