@@ -1,7 +1,8 @@
 <?php
 class User{
     private $_db 
-          , $_data;
+          , $_data
+          , $_sessionName;
 
     public function __construct($user = null){
         $this->_db = DB::getInstance();
@@ -27,7 +28,15 @@ class User{
 
     public function login($username = null, $password = null){
         $user = $this->find($username);
-        print_r($this->_data);
+        
+        if($user){
+            if($this->data()->password === Hash::make($password,$this->data->salt)){
+                Session::put($this->_sessionName, $this->data()->id);
+                return true;
+            }
+            
+        }
+        
         return false;
     }
 

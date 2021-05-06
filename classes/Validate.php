@@ -47,7 +47,7 @@ class Validate {
             $this->_passed = true;
         }
 
-    return false;
+    return $this;
     }
 
     private function addError($error){

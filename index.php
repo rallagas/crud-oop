@@ -22,6 +22,7 @@
                     if($validation->passed()){
                         $user = new User();
                         $login = $user->login(Input::get('username'), Input::get('password'));
+                        
                         if($login){
                             echo "<div class='alert alert-success'>Logged In</div>";
                         }
