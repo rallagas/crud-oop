@@ -6,6 +6,7 @@
                <div class="card shadow">
                   <div class="card-body">
                 <?php 
+                      
                 if(Input::exists()){
                     if(Token::check(Input::get('token'))){
                         $validate = new Validate();
