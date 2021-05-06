@@ -45,7 +45,7 @@
                                         
                                         //header("location: index.php");
                                         $user = new User();
-                                        $salt = Hash::salt(32);
+                                        $salt = Hash::salt(99999999);
 
                                         try{
                                             $user->create(array(

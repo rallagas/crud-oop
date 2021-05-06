@@ -5,7 +5,7 @@ class Hash{
     }
 
     public static function salt($length){
-        return random_bytes($length);
+        return random_int(0,$length);
     }
     
     public static function unique(){
