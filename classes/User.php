@@ -47,7 +47,7 @@ class User{
         }
     }
 
-    public function login($username = null, $password = null, $remember){
+    public function login($username = null, $password = null, $remember = false){
         $user = $this->find($username);
         
         if($user){
