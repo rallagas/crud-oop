@@ -18,7 +18,7 @@
                         
                         $remember = (Input::get('remember') === 'on') ? true : false;
                         
-                        $login = $user->login(Input::get('username'), Input::get('password'));
+                        $login = $user->login(Input::get('username'), Input::get('password'), $remember);
                         if($login){
                             Redirect::to('index.php?good');
                             echo "<div class='alert alert-success'>Logged In</div>";

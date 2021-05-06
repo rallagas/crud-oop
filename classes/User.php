@@ -58,9 +58,9 @@ class User{
                     $hashCheck = $this->_db->get('users_session', array('user_id', '=', $this->data()->id));
                     
                     if(!$hashCheck->count()){
-                        $this->)_db->insert(array(
-                            'user_id' => $this->data()->id
-                            ,'hash' => $hash
+                        $this->_db->insert(array(
+                            'user_id' => $this->data()->id ,
+                            'hash' => $hash
                         ));
                         
                     }else{
