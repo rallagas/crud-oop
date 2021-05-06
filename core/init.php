@@ -3,10 +3,10 @@ session_start();
 
 $GLOBALS['config'] = array(
  'mysql' => array(
-     'host' => '127.0.0.1',
-     'username' => "root",
-     'password' => '',
-     'db' => 'oopee'
+     'host' => 'remotemysql.com:3306',
+     'username' => 'hFSOvk3dkA',
+     'password' => 'd90zi8ZBYX',
+     'db' => 'hFSOvk3dkA'
   ),
  'remember' => array(
    'cookie_name' => 'hash',
