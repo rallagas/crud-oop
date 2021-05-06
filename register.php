@@ -84,7 +84,7 @@
                            <input type="password" name="password_again" placeholder="Password Again" class="form-control">
                        </div>
                        <div class="mb-3">
-                           <input type="text" name="name" value="<?php echo escape(Input::get('name')); ?>" placeholder="Full Name Again" class="form-control">
+                           <input type="text" name="name" value="<?php echo escape(Input::get('name')); ?>" placeholder="Full Name" class="form-control">
                        </div>
                        <input type="hidden" name="token" value="<?php echo Token::generate(); ?>" />
                        <button type="submit" class="btn btn-success form-btn"> Create <i class="bi bi-person-plus"></i> </button>
